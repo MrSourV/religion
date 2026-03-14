@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christianity Denominations — Kevin Renjith</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #f5f0e8;
+    --parchment-dark: #ede5d0;
+    --ink: #1c1208;
+    --brown: #5c3d1e;
+    --gold: #9a7b3a;
+    --gold-light: #c9a84c;
+    --red: #7a1c1c;
+    --rule: #b8a070;
+    --muted: #6b5a3e;
+    --section-bg: #faf7f0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #2a1f0f;
+    font-family: 'EB Garamond', serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+  }
+
+  /* ── OUTER FRAME ── */
+  .book-frame {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--parchment);
+    box-shadow:
+      0 0 0 1px #8a6a30,
+      0 0 0 5px #2a1f0f,
+      0 0 0 6px #8a6a30,
+      0 8px 60px rgba(0,0,0,.7);
+    position: relative;
+  }
+
+  /* decorative corner ornaments */
+  .book-frame::before, .book-frame::after {
+    content: '✦';
+    position: absolute;
+    font-size: 1.1rem;
+    color: var(--gold);
+    z-index: 10;
+  }
+  .book-frame::before { top: 10px; left: 14px; }
+  .book-frame::after  { top: 10px; right: 14px; }
+
+  /* ── COVER ── */
+  .cover {
+    background: linear-gradient(170deg, #1a0f04 0%, #2e1a08 50%, #1a0f04 100%);
+    padding: 70px 60px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(154,123,58,.4);
+    pointer-events: none;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    border: 1px solid rgba(154,123,58,.2);
+    pointer-events: none;
+  }
+
+  /* cross watermark */
+  .cross-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: .04;
+    width: 260px;
+    height: 320px;
+  }
+  .cross-bg::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 320px;
+    background: #c9a84c;
+  }
+  .cross-bg::after {
+    content: '';
+    position: absolute;
+    top: 90px; left: 0;
+    width: 260px; height: 60px;
+    background: #c9a84c;
+  }
+
+  .cover-top-rule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 44px;
+  }
+  .cover-top-rule span { color: var(--gold-light); font-size: .75rem; letter-spacing: .5em; text-transform: uppercase; font-family: 'Lato', sans-serif; font-weight: 300; }
+  .cover-top-rule::before, .cover-top-rule::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
+  .cover-top-rule::after { background: linear-gradient(to left, transparent, var(--gold)); }
+
+  .cover-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    color: #e8d5a0;
+    line-height: 1.15;
+    letter-spacing: .04em;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 12px rgba(0,0,0,.5);
+  }
+
+  .cover-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 400;
+    color: var(--gold-light);
+    letter-spacing: .12em;
+    margin-bottom: 50px;
+  }
+
+  .cover-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 auto 50px;
+    max-width: 340px;
+  }
+  .cover-divider::before, .cover-divider::after { content: ''; flex: 1; height: 1px; background: var(--gold); opacity: .5; }
+  .cover-divider .lozenge { width: 7px; height: 7px; background: var(--gold-light); transform: rotate(45deg); flex-shrink: 0; }
+
+  .cover-toc {
+    list-style: none;
+    display: inline-block;
+    text-align: left;
+  }
+  .cover-toc li {
+    color: #c5b080;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    padding: 5px 0;
+    letter-spacing: .01em;
+  }
+  .cover-toc li::before { content: '·  '; color: var(--gold-light); }
+
+  .cover-meta {
+    margin-top: 54px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(154,123,58,.3);
+  }
+  .cover-meta p { color: #9a8a60; font-family: 'Lato', sans-serif; font-weight: 300; font-size: .82rem; letter-spacing: .1em; line-height: 2; }
+  .cover-meta strong { color: #c9a84c; font-weight: 400; }
+
+  /* ── NAVIGATION BAR ── */
+  .nav-bar {
+    background: #2e1a08;
+    padding: 0 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--gold);
+  }
+  .nav-bar a {
+    color: #c5b080;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 12px 10px;
+    transition: color .2s;
+    white-space: nowrap;
+  }
+  .nav-bar a:hover { color: var(--gold-light); }
+
+  /* ── INNER CONTENT ── */
+  .book-body {
+    padding: 0 60px 60px;
+    background: var(--section-bg);
+  }
+
+  /* ── SECTION ── */
+  .denomination {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--parchment-dark);
+  }
+  .denomination:last-child { border-bottom: none; }
+
+  .denom-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+
+  .denom-num {
+    font-family: 'Cinzel', serif;
+    font-size: .75rem;
+    color: var(--gold);
+    letter-spacing: .2em;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    margin-top: 4px;
+    flex-shrink: 0;
+    opacity: .7;
+  }
+
+  .denom-title-block { flex: 1; }
+
+  .denom-label {
+    font-family: 'Lato', sans-serif;
+    font-size: .68rem;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .denom-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 600;
+    color: var(--red);
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .denom-date {
+    font-family: 'Lato', sans-serif;
+    font-size: .7rem;
+    color: var(--muted);
+    font-style: italic;
+    letter-spacing: .05em;
+  }
+
+  .denom-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin-bottom: 28px;
+  }
+
+  .denom-body p {
+    font-size: 1.08rem;
+    line-height: 1.85;
+    color: #2a1f0f;
+    margin-bottom: 1.1em;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  /* ── SOURCES ── */
+  .sources-section {
+    background: var(--parchment-dark);
+    padding: 44px 60px;
+    border-top: 2px solid var(--rule);
+  }
+
+  .sources-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--brown);
+    letter-spacing: .12em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .sources-title::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+  .sources-list {
+    list-style: none;
+  }
+  .sources-list li {
+    font-size: .88rem;
+    line-height: 1.7;
+    color: var(--muted);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(184,160,112,.2);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+  }
+  .sources-list li:last-child { border-bottom: none; }
+
+  /* ── FOOTER ── */
+  .book-footer {
+    background: #1c1208;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .book-footer span {
+    color: #6b5a3e;
+    font-family: 'Lato', sans-serif;
+    font-size: .72rem;
+    letter-spacing: .1em;
+  }
+  .book-footer .footer-cross { color: var(--gold); font-size: .9rem; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    body { padding: 10px 6px 40px; }
+    .book-body { padding: 0 22px 40px; }
+    .sources-section { padding: 34px 22px; }
+    .cover { padding: 50px 24px 44px; }
+    .denom-header { gap: 12px; }
+    .denom-num { display: none; }
+    .nav-bar { padding: 0 10px; }
+    .nav-bar a { font-size: .65rem; padding: 10px 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="book-frame">
+
+  <!-- ══ COVER ══ -->
+  <div class="cover">
+    <div class="cross-bg"></div>
+
+    <div class="cover-top-rule">
+      <span>Religion Studies</span>
+    </div>
+
+    <h1 class="cover-title">Christianity<br>Denominations</h1>
+    <p class="cover-subtitle">A Research Booklet</p>
+
+    <div class="cover-divider"><div class="lozenge"></div></div>
+
+    <ul class="cover-toc">
+      <li>The Roman Catholic Church</li>
+      <li>Jehovah's Witnesses</li>
+      <li>The Eastern Orthodox Church</li>
+      <li>The Church of Jesus Christ of Latter-day Saints</li>
+      <li>The Methodist Church</li>
+      <li>The Baptist Churches</li>
+      <li>The Anglican Church</li>
+    </ul>
+
+    <div class="cover-meta">
+      <p><strong>Kevin Renjith</strong></p>
+      <p>HRTM1.9</p>
+    </div>
+  </div>
+
+  <!-- ══ NAV ══ -->
+  <nav class="nav-bar">
+    <a href="#rcc">Roman Catholic</a>
+    <a href="#jw">Jehovah's Witnesses</a>
+    <a href="#eoc">Eastern Orthodox</a>
+    <a href="#lds">Mormons</a>
+    <a href="#meth">Methodist</a>
+    <a href="#bap">Baptist</a>
+    <a href="#ang">Anglican</a>
+    <a href="#sources">Sources</a>
+  </nav>
+
+  <!-- ══ BODY ══ -->
+  <div class="book-body">
+
+    <!-- 1. Roman Catholic -->
+    <section class="denomination" id="rcc">
+      <div class="denom-header">
+        <div class="denom-num">I</div>
+        <div class="denom-title-block">
+          <p class="denom-label">Denomination One</p>
+          <h2 class="denom-title">The Roman Catholic Church</h2>
+          <p class="denom-date">Date: Tuesday 10th March 2026</p>
+        </div>
+      </div>
+      <div class="denom-rule"></div>
+      <div class="denom-body">
+        <p>The Roman Catholic Church is the largest Christian denomination in the world, with over 1.3 billion members! To put that into a perspective that's roughly 17% of the entire global population. Of the estimated 2.5 billion Christians in the world, about 1.3 billion are Roman Catholics. It is most common to see Roman Catholics in Latin America, Southern Europe, Saharan Africa, and the Philippines, though it has a presence on every continent. The most recognizable symbol of the Catholic faith is the crucifix, which is basically a cross with the image of Jesus on it, which represents his suffering and sacrifice for humanity. The Church is based in Vatican City, a small independent country inside Rome, Italy, which serves as the administrative centre of the Catholic world.</p>
+        <p>As a branch of Christianity, Roman Catholicism can be traced to the life and teachings of Jesus Christ in Roman occupied Jewish Palestine about 30 CE. Catholics believe that Jesus appointed St Peter, who was one of his twelve apostles, as the first leader of the Church, and that every Pope since then is a successor to Peter. Christianity spread through the Roman Empire, and in the early 300s the Emperor Constantine personally converted to the faith and formally ended the persecution of Christians. This eventually developed into the religion christianity that we know of today.</p>
+        <p>Over the following centuries the Church became one of the most powerful institutions in the world, which shaped European culture, law, education, and politics throughout the medieval period. In 1054, a major split known as the Great Schism divided Christianity into the Roman Catholic Church in the West and the Eastern Orthodox Church in the East.</p>
+        <p>Now what do they believe in? Catholics believe in the Holy Trinity: that God is one being who exists as three distinct but equal persons, these are, the Father, the Son (Jesus Christ), and the Holy Spirit. At the core of the Catholic faith is the belief in one God, who exists in three distinct persons: the Father, the Son (who is Jesus Christ), and the Holy Spirit. These three persons are not separate gods, but together form one God.</p>
+        <p>In Roman Catholic teaching, the sacraments serve to show the bond between God and humankind. Salvation is understood to come through a combination of faith in God, God's grace, good works, and participation in the seven sacraments. Roman Catholicism celebrates seven sacraments: baptism, the Eucharist, confirmation, reconciliation (confession), marriage, anointing of the sick, and holy orders. Of these, Baptism and the Eucharist are considered the most essential. Catholics also believe in transubstantiation. Which is during Mass, when the bread and wine become the body and blood of Christ.</p>
+        <p>The Roman Catholic Church has a hierarchy model for church leadership, which recognizes three orders of pastoral ministry and leadership: bishops, priests, and deacons. At the top of this hierarchy is the Pope, who is considered the successor of Saint Peter and holds final authority over the entire Church on matters of faith and morals. Roman Catholics hold to papal infallibility, a position which became official in 1870. In this view, the pope is infallible in matters of doctrine and morals whenever he speaks ex cathedra. Below the Pope are Cardinals, then Archbishops, Bishops, Priests, and Deacons, each responsible for governing different levels of the Church.</p>
+        <p>The central act of Catholic worship is the Mass, which is a weekly liturgical service that follows the same structure all over the world. It includes readings from the Bible, a homily from the priest, communal prayer, and the celebration of the Eucharist. As well as Mass on Sundays, Catholics are obliged to attend Mass on the great feasts of the Church. Catholic churches are traditionally elaborate spaces filled with stained glass windows, statues, candles, and incense.</p>
+        <p>The Catholic Bible contains 73 books, seven more than the Protestant Bible, including the books of the Apocrypha which Protestants exclude from their canon. Alongside Scripture, Catholics also give equal authority to Sacred Tradition, which refers to the teachings and practices passed down through the Church since the time of the Apostles. This living transmission of the Word of God is called tradition, which is distinct from Scripture, but closely tied to it. The Catechism of the Catholic Church is the official document summarising all Catholic doctrine, morals, and worship practices.</p>
+        <p>The Catholic Church faces alot of challenges in the modern era. The worst one beeing the sexual abuse scandal, which has caused widespread loss of trust and a significant drop in membership and attendance. These scandals have led to legal actions and financial repercussions and tarnished the Church's reputation.</p>
+      </div>
+    </section>
+
+    <!-- 2. Jehovah's Witnesses -->
+    <section class="denomination" id="jw">
+      <div class="denom-header">
+        <div class="denom-num">II</div>
+        <div class="denom-title-block">
+          <p class="denom-label">Denomination Two</p>
+          <h2 class="denom-title">Jehovah's Witnesses</h2>
+          <p class="denom-date">Date: Tuesday 10th March 2026</p>
+        </div>
+      </div>
+      <div class="denom-rule"></div>
+      <div class="denom-body">
+        <p>Jehovah's Witnesses are a Christian denomination with over 8 million members worldwide. They are probably most well known for their door to door preaching, where members go from home to home to share their beliefs and discuss the Bible with whoever answers. Unlike most Christian groups, they do not use the cross as a symbol, viewing it as a pagan object that was never actually used in Jesus' execution. Their name comes directly from Isaiah 43:10, which describes God's people as his witnesses. The religion is most common in the United States, Latin America, and Sub-Saharan Africa.</p>
+        <p>The movement started in Pittsburgh, Pennsylvania in the 1870s with a man named Charles Taze Russell, who began organizing Bible study groups that interpreted scripture differently from most traditional churches at the time. Russell also founded The Watchtower magazine in 1879, which is still published and handed out by members today. After Russell died, Joseph Rutherford took over and reorganized the group, officially adopting the name "Jehovah's Witnesses" in 1931, taken from Isaiah 43:10. Since then the religion has grown and spread to countries all over the world.</p>
+        <p>One of the biggest differences between Jehovah's Witnesses and most other Christian groups is their view of God. They completely reject the Trinity. They believe Jehovah is the one true God, and that Jesus was God's first creation, making him an important figure but not equal to God. They also believe the Holy Spirit is not a person at all, but rather God's active force in the world. Their Bible translation is called the New World Translation, which was first published in 1950 and differs in several places from other versions.</p>
+        <p>The organization is led by a small group called the Governing Body, based in Warwick, New York, which oversees all teachings and decisions worldwide. There is no paid clergy. Local congregations are run by volunteer Elders and Ministerial Servants. Members meet in plain, simple buildings called Kingdom Halls, no crosses, no artwork, nothing on the walls. They also do not celebrate birthdays, Christmas, or any holidays, believing these traditions have pagan origins not supported by the Bible. Blood transfusions are also refused on religious grounds.</p>
+        <p>In terms of salvation, Jehovah's Witnesses believe that only 144,000 faithful followers will go to heaven to rule alongside Christ. Everyone else who remains loyal and survives Armageddon will live forever on a paradise earth.</p>
+        <p>The Jehovah's Witnesses face a number of serious challenges. The practice of shunning, where members who leave or get expelled are completely cut off from family and friends still inside, has drawn significant criticism and caused real harm to many families. There have also been major child abuse lawsuits filed against the organization in multiple countries, with accusations that cases were handled internally and kept quiet. On top of that, several of their major prophecies, including predicted end dates for Armageddon, never came true, which has caused many members to quietly leave over the years.</p>
+      </div>
+    </section>
+
+    <!-- 3. Eastern Orthodox -->
+    <section class="denomination" id="eoc">
+      <div class="denom-header">
+        <div class="denom-num">III</div>
+        <div class="denom-title-block">
+          <p class="denom-label">Denomination Three</p>
+          <h2 class="denom-title">The Eastern Orthodox Church</h2>
+          <p class="denom-date">Date: Wednesday 11th March 2026</p>
+        </div>
+      </div>
+      <div class="denom-rule"></div>
+      <div class="denom-body">
+        <p>The Eastern Orthodox Church is the second largest Christian denomination in the world with around 260 million members. It is most common in Greece, Russia, Eastern Europe, and the Middle East. The word Orthodox comes from the Greek words meaning "right belief," and members believe their church has preserved the original teachings of Christianity without any changes since the time of the apostles. One of their most recognizable symbols is a three barred cross, which is very different from the standard cross used by Catholics and Protestants.</p>
+        <p>The church traces its origins back to Jesus Christ and his apostles, just like Catholicism. For the first thousand years, the Eastern and Western churches were mostly unified. However tensions had been building for centuries over cultural differences, political disagreements, and conflicts over theology. This all came to a head in 1054 in an event called the Great Schism, where the Eastern Orthodox Church and the Roman Catholic Church officially split from each other. The main issues were whether the Pope had authority over the entire Christian world, and a disagreement over a single line in the Nicene Creed about the Holy Spirit. The Eastern Church refused to accept both, and from that point forward the two branches developed separately.</p>
+        <p>Like Catholics, Eastern Orthodox Christians believe in the Holy Trinity, Father, Son, and Holy Spirit as one God. However they have a different view of the Holy Spirit, believing that it proceeds from the Father only, not from the Father and the Son as Catholics believe. They also place a strong emphasis on a concept called Theosis, which is the idea that through faith and spiritual practice, a person can gradually become closer to God and share in his divine nature. Salvation is not just about forgiveness of sins but about this ongoing process of transformation.</p>
+        <p>The Orthodox Church also practices seven sacraments, which they call the Holy Mysteries. These include Baptism, the Eucharist, Chrismation, Confession, Marriage, Holy Orders, and Anointing of the Sick. Baptism is done by full immersion, and immediately after, a newly baptized person receives Chrismation, which is the equivalent of Confirmation in the Catholic Church, but done right away rather than years later.</p>
+        <p>The Eastern Orthodox Church has a decentralized leadership structure, which is one of the big ways it differs from Catholicism. There is no single leader equivalent to the Pope. Instead, the Ecumenical Patriarch of Constantinople is considered "first among equals," which is more of an honorary title than actual authority. Below him are patriarchs, archbishops, and bishops who each govern their own independent regional churches. All bishops are considered equal in spiritual authority.</p>
+        <p>Orthodox worship is known for being very long, very ceremonial, and deeply rooted in ancient tradition. The main service is called the Divine Liturgy, which is similar to the Catholic Mass but significantly more elaborate. Services are filled with chanting, incense, candles, and the veneration of icons, which are sacred paintings of Jesus, Mary, and the saints. Icons are an especially important part of Orthodox faith and can be found covering the walls and ceilings of Orthodox churches. Fasting is also taken seriously, with Orthodox Christians observing multiple fasting periods throughout the year, the most significant being Great Lent before Easter.</p>
+        <p>Their sacred text is the Bible, but the Old Testament is based on an ancient Greek translation called the Septuagint rather than the original Hebrew text.</p>
+        <p>Some of the current challenges facing the Eastern Orthodox Church include political tensions between different national churches, most notably the ongoing conflict between the Russian Orthodox Church and the Ecumenical Patriarchate over the Ukrainian Orthodox Church, which has caused a significant internal divide. The church also struggles with questions around modernization, as it holds very firmly to ancient traditions and is often seen as slow to engage with contemporary issues.</p>
+      </div>
+    </section>
+
+    <!-- 4. Mormons -->
+    <section class="denomination" id="lds">
+      <div class="denom-header">
+        <div class="denom-num">IV</div>
+        <div class="denom-title-block">
+          <p class="denom-label">Denomination Four</p>
+          <h2 class="denom-title">The Church of Jesus Christ of Latter-day Saints (Mormons)</h2>
+          <p class="denom-date">Date: Wednesday 11th March 2026</p>
+        </div>
+      </div>
+      <div class="denom-rule"></div>
+      <div class="denom-body">
+        <p>The Church of Jesus Christ of Latter-day Saints, which is more commonly known as the Mormon Church, has over 17 million members worldwide. The word "Mormon" actually comes from one of their holy books called the Book of Mormon, though the church would prefer people not use that nickname. The religion is most popular in Utah and the western United States where it has a huge presence in everyday life and culture. You can usually recognize members by their focus on family, and the young missionaries you see walking around in white shirts and ties knocking on doors, just like Jehovah witnesses.</p>
+        <p>The church was started in 1830 in New York by a man named Joseph Smith. Smith said that when he was a teenager, God and Jesus appeared to him in a vision and told him that every church at the time had gone off track from the true gospel. A few years after that he claimed an angel named Moroni showed him where a set of golden plates were buried, and he translated them into what became the Book of Mormon. As the church got bigger they ran into a lot of trouble with people around them, mostly because of polygamy, which Smith introduced in the 1830s. Smith ended up getting killed by a mob in 1844 while he was in jail. After that, a man named Brigham Young took over and led most of the members on a long trip west to Utah where they eventually settled. Polygamy was officially ended by the church in 1890.</p>
+        <p>One of the biggest things that Mormons set apart from other Christians is how they see God. They do not believe in the Trinity the way most Christians do. Instead they believe God the Father, Jesus Christ, and the Holy Ghost are three totally separate beings, unlike the Father, the Son, and the Holy Spirit. They also believe God the Father has a physical body, which most other Christian groups would completely disagree with. On top of that they believe that before people are born on earth they existed as spirit children of God, and that after death a faithful member can eventually become like God. That last part is probably the most unique belief in all of Christianity.</p>
+        <p>For salvation, Mormons believe you need faith in Jesus, repentance, baptism by someone with the right authority, and living faithfully throughout your life. They also do something called baptism for the dead, where living members get baptized on behalf of people who have already died, giving them a chance to accept the gospel in the afterlife. This is a big reason why Mormons put so much time and effort into family history and tracing their ancestry.</p>
+        <p>They do not only use the Bible either. Mormons have four sacred texts which are the Bible, the Book of Mormon, the Doctrine and Covenants, and the Pearl of Great Price. They also believe the current President of the Church is a living prophet who still receives guidance and revelation directly from God today.</p>
+        <p>The church is led by the President at the top, who is treated as both a prophet and the overall leader. Under him are two counselors, then the Quorum of the Twelve Apostles, and then different levels of leadership down to local bishops. Only men can hold the priesthood and lead in official church roles. Members go to church on Sundays in plain buildings called meetinghouses. They also have temples which are much more sacred and only certain members are allowed in.</p>
+        <p>Members live by a strict health and lifestyle code called the Word of Wisdom, which means no alcohol, coffee, tea, tobacco, or drugs. Young men are basically expected to go on a two year mission at age 18 where they travel somewhere and spend their time preaching and trying to bring in new members. This is one of the most well known parts of Mormon life and culture.</p>
+        <p>The church does face some serious criticism. Up until 1978 Black men were not allowed to hold the priesthood, which has caused a lot of ongoing conversation about racism in the church's history. Their stance against same sex marriage has pushed a lot of younger members away.</p>
+      </div>
+    </section>
+
+    <!-- 5. Methodist -->
+    <section class="denomination" id="meth">
+      <div class="denom-header">
+        <div class="denom-num">V</div>
+        <div class="denom-title-block">
+          <p class="denom-label">Denomination Five</p>
+          <h2 class="denom-title">The Methodist Church</h2>
+          <p class="denom-date">Date: Thursday 12th March 2026</p>
+        </div>
+      </div>
+      <div class="denom-rule"></div>
+      <div class="denom-body">
+        <p>The Methodist Church has around 40 million members worldwide, making it one of the larger Protestant denominations in the world. It is most common in the United States, the United Kingdom, and many places in Africa. Methodism grew out of the Church of England and shares a lot of the same core beliefs as other Protestant groups, but it has its own different identity when it comes to the way faith should be lived out in everyday life.</p>
+        <p>The church started in the 1730s at Oxford University, where a student named John Wesley and his brother Charles formed a small group that read the Bible together, prayed regularly, and visited people in prison. John Wesley later began preaching to large crowds of working class people who felt ignored by the Church of England. The movement grew quickly and eventually split off from the Church of England to become its own separate church, mostly after Wesley's death in the year 1791.</p>
+        <p>Like most Christians, Methodists believe in the Trinity, the Bible as the word of God, and salvation through faith in Jesus Christ. What makes Methodism different is its focus on the idea that anyone can be saved, not just a chosen few. This was actually a big deal at the time because some other churches taught that God had already decided who would go to heaven and who would not. Wesley rejected that idea completely. He also strongly believed that once you are saved, you should keep growing as a person and work toward living a holy and ethical life, which he called sanctification.</p>
+        <p>When it comes to sacred texts, Methodists use the standard Protestant Bible of 66 books. Alongside that they look to four things to guide their faith, which are the Bible, tradition, reason, and personal experience.</p>
+        <p>Methodists recognise two sacraments, which are Baptism and Holy Communion. Baptism can be done by sprinkling water and is accepted for both infants and adults. Holy Communion, also called the Lord's Supper, is celebrated regularly in services.</p>
+        <p>The church does not have a Pope or a single leader. Instead it is run through a system of conferences where both regular members and clergy have a say on decisions. In the United States the biggest branch is the United Methodist Church (UMC), which is led by a Council of Bishops. In Britain the structure is slightly different and does not have bishops at all. The church has always been relatively open, allowing women to be ordained as ministers, which the United Methodist Church started doing in 1956.</p>
+        <p>Methodist services are generally welcoming and not overly formal. Singing hymns is a huge part of worship, partly because Charles Wesley wrote thousands of hymns that are still used today. Services include Bible readings, a sermon, prayers, and communion. The overall feel is warm, welcoming, and community focused rather than grand and ceremonial.</p>
+        <p>The Methodist Church is known for its strong history of social justice work. From the very beginning Wesley preached about caring for the poor, and the church has been involved in movements like abolishing slavery, fighting poverty, and supporting workers' rights. That tradition continues today with the church actively speaking on issues such as climate change, housing, and inequality.</p>
+        <p>One of the biggest challenges the Methodist Church is dealing with right now is a major split over same sex marriage. In 2024 the United Methodist Church officially changed its rules to allow same sex marriage and ordain LGBTQ+ clergy. This caused a large number of more conservative congregations to break away and form a new separate denomination called the Global Methodist Church, which was one of the biggest splits in the denomination's history.</p>
+      </div>
+    </section>
+
+    <!-- 6. Baptist -->
+    <section class="denomination" id="bap">
+      <div class="denom-header">
+        <div class="denom-num">VI</div>
+        <div class="denom-title-block">
+          <p class="denom-label">Denomination Six</p>
+          <h2 class="denom-title">The Baptist Churches</h2>
+          <p class="denom-date">Date: Thursday 12th March 2026</p>
+        </div>
+      </div>
+      <div class="denom-rule"></div>
+      <div class="denom-body">
+        <p>The Baptist Church is one of the largest denominations in the world with around 100 million members. It is most popular and common in the United States, mostly seen in the southern states which are sometimes referred to as the Bible Belt, though large Baptist communities also exist across different parts of Africa, Brazil, and parts of Asia. Unlike most other Christian groups, Baptists do not have one central organization. Each church runs itself independently, so Baptist churches can vary quite a bit from place to place.</p>
+        <p>The movement started in the early 1600s in England among Christians who felt the Church of England had not separated enough from Catholicism. A man named John Smyth is known as one of the first Baptist leaders, and his belief was that only adults who had personally chosen to follow Jesus should be baptized. This was very controversial at the time since most churches baptized babies. The movement spread to America in the 1630s when Roger Williams founded the first Baptist church in Rhode Island, and from there it grew rapidly, especially across the south.</p>
+        <p>Baptists believe in the Holy Trinity and that the Bible is the complete word of God. When it comes to salvation they believe it is entirely personal, meaning no priest, sacrament, or church tradition plays a role. It comes down to a personal decision to accept Jesus as our savior, and once that happens baptists believe your salvation is permanent.</p>
+        <p>The most well known Baptist practice is adult baptism by full immersion in water. They completely reject infant baptism since they believe it only means something if the person being baptized has actually made a conscious choice to follow Christ, and not something a child has to go through. Going fully underwater and coming back up is meant to represent dying to your old self and starting fresh as a Christian. They also observe the Lord's Supper but treat it as purely symbolic, meaning they do not believe anything miraculous happens to the bread and wine.</p>
+        <p>The Bible is the only book Baptists recognise, and every member is encouraged to read and interpret it to learn the truth, without a religious leader telling them what it means. There is no bishop or central authority figure. Each local church makes its own decisions.</p>
+        <p>Baptist services are informal and centered mostly around the sermon. A typical Sunday involves singing, prayer, and a message from the pastor. Music is a big part of the culture, especially in Black Baptist churches where gospel music has very deep roots. The buildings are usually plain and simple with no statues or decoration.</p>
+        <p>The biggest issue facing the Baptist church today is the sexual abuse cases within the Southern Baptist Convention, where hundreds of abuse cases were reportedly covered up by church leadership over many decades. The church has also faced a lot of criticism for its historical support of slavery and racial segregation, and there are ongoing debates about whether women should be allowed to hold leadership roles.</p>
+      </div>
+    </section>
+
+    <!-- 7. Anglican -->
+    <section class="denomination" id="ang">
+      <div class="denom-header">
+        <div class="denom-num">VII</div>
+        <div class="denom-title-block">
+          <p class="denom-label">Denomination Seven</p>
+          <h2 class="denom-title">The Anglican Church</h2>
+          <p class="denom-date">Date: Friday 13th March 2026</p>
+        </div>
+      </div>
+      <div class="denom-rule"></div>
+      <div class="denom-body">
+        <p>The Anglican Church is also known as the Church of England, and has around 86 million members worldwide and is found across places such as the UK, Canada, Australia, Africa, and many other countries that were once part of the British Empire. It is one of the more unique Christian denominations because it sits between Catholicism and Protestantism, so it keeps elements of both rather than going fully in one direction. In the United States the Anglican tradition is represented by the Episcopal Church.</p>
+        <p>The church started in the year 1534, because of a personal dispute between King Henry VIII and the Pope. Henry wanted to annul his marriage to Catherine of Aragon because she had not given him a male heir, and the Pope refused to allow it. Henry responded by cutting his ties with Rome entirely and declaring himself the head of the Church of England. From there, the church took on more ideas (which were protestant), especially under Archbishop Thomas Cranmer, who rewrote the church's worship practices and produced the Book of Common Prayer, which is still central to Anglican worship today.</p>
+        <p>Anglicans believe in the Holy Trinity, the Bible as the word of God, and salvation through faith in Jesus Christ. What makes the Anglican approach different is that it tries to hold a middle ground, accepting things from both the Catholic and Protestant traditions rather than being strictly one or the other. The Bible is the main authority but tradition and reason are also taken seriously alongside it.</p>
+        <p>Anglicans recognise two main sacraments which are Baptism and the Eucharist, also called Holy Communion. They also treat confirmation, marriage, ordination, and anointing of the sick as important religious acts. The Book of Common Prayer is the other key text alongside the Bible and it guides how services are run across the whole communion.</p>
+        <p>The church is led by the Archbishop of Canterbury, who is a very high figure in the Anglican world, though they do not hold the same authority as the Pope. Below the Archbishop are bishops who oversee different regions, then priests and deacons at the local level. The King or Queen of England is technically the official head of the Church of England specifically. Women can be ordained as priests and bishops in most Anglican churches, a change that came gradually from the late 20th century onward.</p>
+        <p>Anglican services follow a structured format based on the Book of Common Prayer, including Bible readings, a sermon, hymns, and Holy Communion. The style of worship can vary quite a bit though.</p>
+        <p>The Anglican Church is actually currently going through a serious internal conflict right now over same sex marriage. The Church of England officially voted to bless same sex couples in 2023, which caused a major backlash from more conservative Anglican churches, particularly in Africa. A group of conservative bishops recently held their own gathering in Nigeria in 2026 and set up a rival leadership structure, which many are describing as the biggest split in the Anglican Communion in modern history. Alongside this, church attendance in England has been declining for years, with average weekly numbers continuing to drop.</p>
+      </div>
+    </section>
+
+  </div><!-- end book-body -->
+
+  <!-- ══ SOURCES ══ -->
+  <div class="sources-section" id="sources">
+    <h3 class="sources-title">Works Cited</h3>
+    <ul class="sources-list">
+      <li>Britannica, The Editors of Encyclopaedia. "Eastern Orthodoxy." <em>Encyclopaedia Britannica</em>, 8 Mar. 2026, www.britannica.com/topic/Eastern-Orthodoxy.</li>
+      <li>Britannica, The Editors of Encyclopaedia. "Methodism." <em>Encyclopaedia Britannica</em>, 17 Jan. 2026, www.britannica.com/topic/Methodism.</li>
+      <li>Britannica, The Editors of Encyclopaedia. "Anglicanism." <em>Encyclopaedia Britannica</em>, www.britannica.com/topic/Anglicanism.</li>
+      <li>Britannica, The Editors of Encyclopaedia. "Anglican Communion." <em>Encyclopaedia Britannica</em>, 9 Mar. 2026, www.britannica.com/topic/Anglican-Communion.</li>
+      <li>Britannica, The Editors of Encyclopaedia. "Church of Jesus Christ of Latter-day Saints." <em>Encyclopaedia Britannica</em>, 12 Mar. 2026, www.britannica.com/topic/Church-of-Jesus-Christ-of-Latter-day-Saints.</li>
+      <li>"Eastern Orthodox Church Beliefs and Practices." <em>Learn Religions</em>, 25 Feb. 2026, www.learnreligions.com/eastern-orthodox-church-beliefs-700622.</li>
+      <li>"Eastern Orthodox Church." <em>EBSCO Research Starters</em>, www.ebsco.com/research-starters/religion-and-philosophy/eastern-orthodox-church.</li>
+      <li>Fairchild, Mary. "Methodist Church Beliefs and Practices." <em>Learn Religions</em>, 25 Feb. 2026, www.learnreligions.com/methodist-church-beliefs-and-practices-700569.</li>
+      <li>Fairchild, Mary. "Anglican Church Overview." <em>Learn Religions</em>, 25 Feb. 2026, www.learnreligions.com/anglican-episcopal-denomination-700140.</li>
+      <li>"What Do Mormons Believe?" <em>CNN</em>, 29 Apr. 2023, www.cnn.com/2023/04/29/us/mormon-beliefs-explained-cec/index.html.</li>
+      <li>"What Is the Eastern Orthodox Church? History and Beliefs." <em>Christianity.com</em>, 4 Aug. 2023, www.christianity.com/church/denominations/what-is-the-eastern-orthodox-church-history-and-beliefs.html.</li>
+      <li>"Factsheet: The Methodist Church." <em>Religion Media Centre</em>, 13 Apr. 2022, religionmediacentre.org.uk/factsheets/factsheet-the-methodist-church.</li>
+      <li>"The Church of Jesus Christ of Latter-day Saints." <em>Wikipedia</em>, en.wikipedia.org/wiki/The_Church_of_Jesus_Christ_of_Latter-day_Saints. Accessed 13 Mar. 2026.</li>
+    </ul>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <div class="book-footer">
+    <span>Kevin Renjith &nbsp;·&nbsp; HRTM1.9</span>
+    <span class="footer-cross">✝</span>
+    <span>Christianity Denominations Booklet</span>
+  </div>
+
+</div><!-- end book-frame -->
+
+</body>
+</html>
