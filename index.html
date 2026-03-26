@@ -31,7 +31,6 @@
     padding: 40px 20px 80px;
   }
 
-  /* ── OUTER FRAME ── */
   .book-frame {
     max-width: 860px;
     margin: 0 auto;
@@ -44,7 +43,6 @@
     position: relative;
   }
 
-  /* decorative corner ornaments */
   .book-frame::before, .book-frame::after {
     content: '✦';
     position: absolute;
@@ -55,7 +53,6 @@
   .book-frame::before { top: 10px; left: 14px; }
   .book-frame::after  { top: 10px; right: 14px; }
 
-  /* ── COVER ── */
   .cover {
     background: linear-gradient(170deg, #1a0f04 0%, #2e1a08 50%, #1a0f04 100%);
     padding: 70px 60px 60px;
@@ -79,7 +76,6 @@
     pointer-events: none;
   }
 
-  /* cross watermark */
   .cross-bg {
     position: absolute;
     top: 50%;
@@ -170,7 +166,6 @@
   .cover-meta p { color: #9a8a60; font-family: 'Lato', sans-serif; font-weight: 300; font-size: .82rem; letter-spacing: .1em; line-height: 2; }
   .cover-meta strong { color: #c9a84c; font-weight: 400; }
 
-  /* ── NAVIGATION BAR ── */
   .nav-bar {
     background: #2e1a08;
     padding: 0 30px;
@@ -195,13 +190,11 @@
   }
   .nav-bar a:hover { color: var(--gold-light); }
 
-  /* ── INNER CONTENT ── */
   .book-body {
     padding: 0 60px 60px;
     background: var(--section-bg);
   }
 
-  /* ── SECTION ── */
   .denomination {
     padding: 56px 0 40px;
     border-bottom: 1px solid var(--parchment-dark);
@@ -263,6 +256,28 @@
     margin-bottom: 28px;
   }
 
+  /* ── CHURCH IMAGE ── */
+  .denom-image {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 28px;
+    border: 1px solid var(--rule);
+    filter: sepia(20%) contrast(1.05);
+  }
+
+  .denom-image-caption {
+    font-family: 'Lato', sans-serif;
+    font-size: .68rem;
+    color: var(--muted);
+    font-style: italic;
+    text-align: center;
+    margin-top: -22px;
+    margin-bottom: 26px;
+    letter-spacing: .04em;
+  }
+
   .denom-body p {
     font-size: 1.08rem;
     line-height: 1.85;
@@ -272,7 +287,6 @@
     hyphens: auto;
   }
 
-  /* ── SOURCES ── */
   .sources-section {
     background: var(--parchment-dark);
     padding: 44px 60px;
@@ -305,7 +319,6 @@
   }
   .sources-list li:last-child { border-bottom: none; }
 
-  /* ── FOOTER ── */
   .book-footer {
     background: #1c1208;
     padding: 18px 40px;
@@ -321,7 +334,6 @@
   }
   .book-footer .footer-cross { color: var(--gold); font-size: .9rem; }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 600px) {
     body { padding: 10px 6px 40px; }
     .book-body { padding: 0 22px 40px; }
@@ -331,6 +343,7 @@
     .denom-num { display: none; }
     .nav-bar { padding: 0 10px; }
     .nav-bar a { font-size: .65rem; padding: 10px 6px; }
+    .denom-image { height: 180px; }
   }
 </style>
 </head>
@@ -341,16 +354,12 @@
   <!-- ══ COVER ══ -->
   <div class="cover">
     <div class="cross-bg"></div>
-
     <div class="cover-top-rule">
       <span>Religion Studies</span>
     </div>
-
     <h1 class="cover-title">The<br>Denominations</h1>
     <p class="cover-subtitle">Religion Assignment</p>
-
     <div class="cover-divider"><div class="lozenge"></div></div>
-
     <ul class="cover-toc">
       <li>The Roman Catholic Church</li>
       <li>Jehovah's Witnesses</li>
@@ -360,7 +369,6 @@
       <li>The Baptist Churches</li>
       <li>The Anglican Church</li>
     </ul>
-
     <div class="cover-meta">
       <p><strong>Kevin Renjith</strong></p>
       <p>HRTM1.9</p>
@@ -393,6 +401,8 @@
         </div>
       </div>
       <div class="denom-rule"></div>
+      <img class="denom-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Basilica_di_San_Pietro_in_Vaticano_September_2015-1.jpg/1280px-Basilica_di_San_Pietro_in_Vaticano_September_2015-1.jpg" alt="St. Peter's Basilica, Vatican City" loading="lazy">
+      <p class="denom-image-caption">St. Peter's Basilica, Vatican City — the centre of the Roman Catholic Church</p>
       <div class="denom-body">
         <p>The Roman Catholic Church is the largest Christian denomination in the world, with over 1.3 billion members! To put that into a perspective that's roughly 17% of the entire global population. Of the estimated 2.5 billion Christians in the world, about 1.3 billion are Roman Catholics. It is most common to see Roman Catholics in Latin America, Southern Europe, Saharan Africa, and the Philippines, though it has a presence on every continent. The most recognizable symbol of the Catholic faith is the crucifix, which is basically a cross with the image of Jesus on it, which represents his suffering and sacrifice for humanity. The Church is based in Vatican City, a small independent country inside Rome, Italy, which serves as the administrative centre of the Catholic world.</p>
         <p>As a branch of Christianity, Roman Catholicism can be traced to the life and teachings of Jesus Christ in Roman occupied Jewish Palestine about 30 CE. Catholics believe that Jesus appointed St Peter, who was one of his twelve apostles, as the first leader of the Church, and that every Pope since then is a successor to Peter. Christianity spread through the Roman Empire, and in the early 300s the Emperor Constantine personally converted to the faith and formally ended the persecution of Christians. This eventually developed into the religion christianity that we know of today.</p>
@@ -417,6 +427,8 @@
         </div>
       </div>
       <div class="denom-rule"></div>
+      <img class="denom-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Kingdom_Hall_of_Jehovah%27s_Witnesses_-_geograph.org.uk_-_1388455.jpg/1280px-Kingdom_Hall_of_Jehovah%27s_Witnesses_-_geograph.org.uk_-_1388455.jpg" alt="Kingdom Hall of Jehovah's Witnesses" loading="lazy">
+      <p class="denom-image-caption">A Kingdom Hall — the meeting place of Jehovah's Witnesses</p>
       <div class="denom-body">
         <p>Jehovah's Witnesses are a Christian denomination with over 8 million members worldwide. They are probably most well known for their door to door preaching, where members go from home to home to share their beliefs and discuss the Bible with whoever answers. Unlike most Christian groups, they do not use the cross as a symbol, viewing it as a pagan object that was never actually used in Jesus' execution. Their name comes directly from Isaiah 43:10, which describes God's people as his witnesses. The religion is most common in the United States, Latin America, and Sub-Saharan Africa.</p>
         <p>The movement started in Pittsburgh, Pennsylvania in the 1870s with a man named Charles Taze Russell, who began organizing Bible study groups that interpreted scripture differently from most traditional churches at the time. Russell also founded The Watchtower magazine in 1879, which is still published and handed out by members today. After Russell died, Joseph Rutherford took over and reorganized the group, officially adopting the name "Jehovah's Witnesses" in 1931, taken from Isaiah 43:10. Since then the religion has grown and spread to countries all over the world.</p>
@@ -438,6 +450,8 @@
         </div>
       </div>
       <div class="denom-rule"></div>
+      <img class="denom-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Hagia_Sophia_Mars_2013.jpg/1280px-Hagia_Sophia_Mars_2013.jpg" alt="Hagia Sophia, Istanbul" loading="lazy">
+      <p class="denom-image-caption">The Hagia Sophia, Istanbul — originally the great cathedral of Eastern Christianity</p>
       <div class="denom-body">
         <p>The Eastern Orthodox Church is the second largest Christian denomination in the world with around 260 million members. It is most common in Greece, Russia, Eastern Europe, and the Middle East. The word Orthodox comes from the Greek words meaning "right belief," and members believe their church has preserved the original teachings of Christianity without any changes since the time of the apostles. One of their most recognizable symbols is a three barred cross, which is very different from the standard cross used by Catholics and Protestants.</p>
         <p>The church traces its origins back to Jesus Christ and his apostles, just like Catholicism. For the first thousand years, the Eastern and Western churches were mostly unified. However tensions had been building for centuries over cultural differences, political disagreements, and conflicts over theology. This all came to a head in 1054 in an event called the Great Schism, where the Eastern Orthodox Church and the Roman Catholic Church officially split from each other. The main issues were whether the Pope had authority over the entire Christian world, and a disagreement over a single line in the Nicene Creed about the Holy Spirit. The Eastern Church refused to accept both, and from that point forward the two branches developed separately.</p>
@@ -461,6 +475,8 @@
         </div>
       </div>
       <div class="denom-rule"></div>
+      <img class="denom-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/SaltLakeTemple.jpg/1280px-SaltLakeTemple.jpg" alt="Salt Lake Temple, Utah" loading="lazy">
+      <p class="denom-image-caption">The Salt Lake Temple, Utah — the most iconic temple of the LDS Church</p>
       <div class="denom-body">
         <p>The Church of Jesus Christ of Latter-day Saints, which is more commonly known as the Mormon Church, has over 17 million members worldwide. The word "Mormon" actually comes from one of their holy books called the Book of Mormon, though the church would prefer people not use that nickname. The religion is most popular in Utah and the western United States where it has a huge presence in everyday life and culture. You can usually recognize members by their focus on family, and the young missionaries you see walking around in white shirts and ties knocking on doors, just like Jehovah witnesses.</p>
         <p>The church was started in 1830 in New York by a man named Joseph Smith. Smith said that when he was a teenager, God and Jesus appeared to him in a vision and told him that every church at the time had gone off track from the true gospel. A few years after that he claimed an angel named Moroni showed him where a set of golden plates were buried, and he translated them into what became the Book of Mormon. As the church got bigger they ran into a lot of trouble with people around them, mostly because of polygamy, which Smith introduced in the 1830s. Smith ended up getting killed by a mob in 1844 while he was in jail. After that, a man named Brigham Young took over and led most of the members on a long trip west to Utah where they eventually settled. Polygamy was officially ended by the church in 1890.</p>
@@ -484,6 +500,8 @@
         </div>
       </div>
       <div class="denom-rule"></div>
+      <img class="denom-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Wesley%27s_Chapel%2C_London.jpg/1280px-Wesley%27s_Chapel%2C_London.jpg" alt="Wesley's Chapel, London" loading="lazy">
+      <p class="denom-image-caption">Wesley's Chapel, London — founded by John Wesley, the founder of Methodism</p>
       <div class="denom-body">
         <p>The Methodist Church has around 40 million members worldwide, making it one of the larger Protestant denominations in the world. It is most common in the United States, the United Kingdom, and many places in Africa. Methodism grew out of the Church of England and shares a lot of the same core beliefs as other Protestant groups, but it has its own different identity when it comes to the way faith should be lived out in everyday life.</p>
         <p>The church started in the 1730s at Oxford University, where a student named John Wesley and his brother Charles formed a small group that read the Bible together, prayed regularly, and visited people in prison. John Wesley later began preaching to large crowds of working class people who felt ignored by the Church of England. The movement grew quickly and eventually split off from the Church of England to become its own separate church, mostly after Wesley's death in the year 1791.</p>
@@ -508,6 +526,8 @@
         </div>
       </div>
       <div class="denom-rule"></div>
+      <img class="denom-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/First_Baptist_Church_of_America.jpg/1280px-First_Baptist_Church_of_America.jpg" alt="First Baptist Church of America, Providence Rhode Island" loading="lazy">
+      <p class="denom-image-caption">First Baptist Church of America, Providence, Rhode Island — founded 1638 by Roger Williams</p>
       <div class="denom-body">
         <p>The Baptist Church is one of the largest denominations in the world with around 100 million members. It is most popular and common in the United States, mostly seen in the southern states which are sometimes referred to as the Bible Belt, though large Baptist communities also exist across different parts of Africa, Brazil, and parts of Asia. Unlike most other Christian groups, Baptists do not have one central organization. Each church runs itself independently, so Baptist churches can vary quite a bit from place to place.</p>
         <p>The movement started in the early 1600s in England among Christians who felt the Church of England had not separated enough from Catholicism. A man named John Smyth is known as one of the first Baptist leaders, and his belief was that only adults who had personally chosen to follow Jesus should be baptized. This was very controversial at the time since most churches baptized babies. The movement spread to America in the 1630s when Roger Williams founded the first Baptist church in Rhode Island, and from there it grew rapidly, especially across the south.</p>
@@ -530,6 +550,8 @@
         </div>
       </div>
       <div class="denom-rule"></div>
+      <img class="denom-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Canterbury_Cathedral_-_Portal_Nave_Cross-spire.jpeg/800px-Canterbury_Cathedral_-_Portal_Nave_Cross-spire.jpeg" alt="Canterbury Cathedral, England" loading="lazy">
+      <p class="denom-image-caption">Canterbury Cathedral, England — the mother church of the Anglican Communion</p>
       <div class="denom-body">
         <p>The Anglican Church is also known as the Church of England, and has around 86 million members worldwide and is found across places such as the UK, Canada, Australia, Africa, and many other countries that were once part of the British Empire. It is one of the more unique Christian denominations because it sits between Catholicism and Protestantism, so it keeps elements of both rather than going fully in one direction. In the United States the Anglican tradition is represented by the Episcopal Church.</p>
         <p>The church started in the year 1534, because of a personal dispute between King Henry VIII and the Pope. Henry wanted to annul his marriage to Catherine of Aragon because she had not given him a male heir, and the Pope refused to allow it. Henry responded by cutting his ties with Rome entirely and declaring himself the head of the Church of England. From there, the church took on more ideas (which were protestant), especially under Archbishop Thomas Cranmer, who rewrote the church's worship practices and produced the Book of Common Prayer, which is still central to Anglican worship today.</p>
